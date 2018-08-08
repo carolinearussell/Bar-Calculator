@@ -1,14 +1,9 @@
-  
-
-  
-// function calculate numbers enter from the screen to produce tip information
-document.getElementById('calculate').onclick = function calculateTip(){
-  var billAmt = Number(document.getElementById("billAmt").value);
-  var tipPer1 = Number(document.getElementById("tipPer").value);
-  var peopleAmt = Number(document.getElementById("peopleAmt").value);
-  var drinkCost = Number(document.getElementById("drinkCost").value);
-  var drinkRd = Number(document.getElementById("drinkRd").value);
-  var bill = billAmt;
+const handleCalculate = () => {
+  const billAmt = document.getElementById("billAmt");
+  const tipPer1 = document.getElementById("tipPer");
+  const peopleAmt = document.getElementById("peopleAmt");
+  const drinkCost = document.getElementById("drinkCost");
+  const drinkRd = document.getElementById("drinkRd");
 // calculation for tip
     tipPer = tipPer1/100;
     billBeforeTip = billAmt/peopleAmt;
@@ -36,26 +31,31 @@ document.getElementById('calculate').onclick = function calculateTip(){
       console.log(Number(totalbbTip).toFixed(2));  
   document.getElementById("splitBBack").innerHTML= "$"+Number(splitBuyBack).toFixed(2);
       console.log(Number(splitBuyBack).toFixed(2));
+};
+
+const clear = () => {
+  var elementsToClear = document.getElementsByClassName("clear-me");
+  var inputsToClear  = document.getElementsByClassName("clear-value");
+
+  // console.log(elementsToClear);
+  // console.log(inputsToClear);
+
+  for (var i = 0; i < elementsToClear.length; i++){
+    elementsToClear[i].innerHTML = '';  
+  }
+  for (var k = 0; k < inputsToClear.length; k++){
+    inputsToClear[k].value = '';
+  }
 }
 
+const buildApp = () => {
+  const calculate = document.getElementById('calculate');
+  const clear = document.getElementById('clear');
+  calculate.addEventListener('click', handleCalculate);
+  clear.addEventListener('click', clear);
+}; 
 
-
-// Clear screen inputs
-  document.getElementById('clear').onclick = function clear() {
-    var elementsToClear = document.getElementsByClassName("clear-me");
-    var inputsToClear  = document.getElementsByClassName("clear-value");
-
-    // console.log(elementsToClear);
-    // console.log(inputsToClear);
-
-    for (var i = 0; i < elementsToClear.length; i++){
-      elementsToClear[i].innerHTML = '';  
-    }
-    for (var k = 0; k < inputsToClear.length; k++){
-      inputsToClear[k].value = '';
-    }
-
-}
+window.onload = buildApp; 
 
 
 
