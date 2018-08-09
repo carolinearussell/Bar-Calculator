@@ -1,21 +1,34 @@
-const handleCalculate = () => {
-  const billAmt = document.getElementById("billAmt");
-  const tipPer1 = document.getElementById("tipPer");
-  const peopleAmt = document.getElementById("peopleAmt");
-  const drinkCost = document.getElementById("drinkCost");
-  const drinkRd = document.getElementById("drinkRd");
-
+const calculate = () => {
   // calculation for tip
-  let tipPer = tipPer1/100;
-  let billBeforeTip = billAmt/peopleAmt;
+  let tipPer = tipPer1 / 100;
+  let billBeforeTip = bill / peopleAmt;
   let tipAmt = bill * tipPer;
   let totalBill = bill + tipAmt;
-  let billPPAmt = bill/peopleAmt;
-  let tipAmtPPerson = tipAmt/peopleAmt;
-  let totalbbTip = (drinkCost * drinkRd)/2
-  let splitBuyBack = totalbbTip/peopleAmt;
+  let billPPAmt = bill / peopleAmt;
+  let tipAmtPPerson = tipAmt / peopleAmt;
+  let totalbbTip = (drinkCost * drinkRd) / 2;
+  let splitBuyBack = totalbbTip / peopleAmt;
   let totalBillAmt = billPPAmt + tipAmtPPerson + totalbbTip;
-  let totalbillTP = (totalBill + totalbbTip)/peopleAmt;
+  let totalbillTP = (totalBill + totalbbTip) / peopleAmt;
+};
+
+const processCalculateRequest = () => {
+
+  const bill = Number(document.getElementById("billAmt").value);
+  const tipPer1 = Number(document.getElementById("tipPer").value);
+  const peopleAmt = Number(document.getElementById("peopleAmt").value);
+  const drinkCost = Number(document.getElementById("drinkCost").value);
+  const drinkRd = Number(document.getElementById("drinkRd").value);
+
+  const {
+    totalBill,
+    tipAmt,
+    billPPAmt,
+    totalbillTP,
+    tipAmtPPerson,
+    totalbbTip,
+    splitBuyBack
+  } = calculate(bill, tipPer1, peopleAmt, drinkCost, drinkRd);
 
   // display tip inform to the screen
   document.getElementById("tBill").innerHTML= "$" + Number(totalBill).toFixed(2);
@@ -27,7 +40,7 @@ const handleCalculate = () => {
   document.getElementById("splitBBack").innerHTML= "$" + Number(splitBuyBack).toFixed(2);
 };
 
-const clear = () => {
+const clearValues = () => {
   var elementsToClear = document.getElementsByClassName("clear-me");
   var inputsToClear  = document.getElementsByClassName("clear-value");
 
@@ -40,10 +53,10 @@ const clear = () => {
 }
 
 const buildApp = () => {
-  const calculate = document.getElementById('calculate');
-  const clear = document.getElementById('clear');
-  calculate.addEventListener('click', handleCalculate);
-  clear.addEventListener('click', clear);
+  const calculateElement = document.getElementById('calculate');
+  const clearElement = document.getElementById('clear');
+  calculateElement.addEventListener('click', processCalculateRequest);
+  clearElement.addEventListener('click', clearValues);
 }; 
 
 window.onload = buildApp; 
