@@ -1,4 +1,5 @@
 const calculate = (bill, tipPer1, peopleAmt, drinkCost, drinkRd) => {
+  console.log(bill, tipPer1, peopleAmt, drinkCost, drinkRd);
   let tipPer = tipPer1 / 100;
   let billBeforeTip = bill / peopleAmt;
   let tipAmt = bill * tipPer;
@@ -23,11 +24,11 @@ const calculate = (bill, tipPer1, peopleAmt, drinkCost, drinkRd) => {
 
 const processCalculateRequest = () => {
 
-  const bill = Number(document.getElementById("billAmt").value);
-  const tipPer1 = Number(document.getElementById("tipPer").value);
-  const peopleAmt = Number(document.getElementById("peopleAmt").value);
-  const drinkCost = Number(document.getElementById("drinkCost").value);
-  const drinkRd = Number(document.getElementById("drinkRd").value);
+  const bill = parseFloat(document.getElementById("billAmt").value);
+  const tipPer1 = parseFloat(document.getElementById("tipPer").value);
+  const peopleAmt = parseFloat(document.getElementById("peopleAmt").value);
+  const drinkCost = parseFloat(document.getElementById("drinkCost").value);
+  const drinkRd = parseFloat(document.getElementById("drinkRd").value);
 
   const {
     totalBill,
