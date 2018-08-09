@@ -1,5 +1,4 @@
-const calculate = () => {
-  // calculation for tip
+const calculate = (bill, tipPer1, peopleAmt, drinkCost, drinkRd) => {
   let tipPer = tipPer1 / 100;
   let billBeforeTip = bill / peopleAmt;
   let tipAmt = bill * tipPer;
@@ -10,6 +9,16 @@ const calculate = () => {
   let splitBuyBack = totalbbTip / peopleAmt;
   let totalBillAmt = billPPAmt + tipAmtPPerson + totalbbTip;
   let totalbillTP = (totalBill + totalbbTip) / peopleAmt;
+
+  return {
+    totalBill,
+    tipAmt,
+    billPPAmt,
+    totalbillTP,
+    tipAmtPPerson,
+    totalbbTip,
+    splitBuyBack
+  };
 };
 
 const processCalculateRequest = () => {
